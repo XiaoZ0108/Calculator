@@ -65,9 +65,10 @@ public class CalculatorUI {
         window = new JFrame(APPLICATION_TITLE);
         window.setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         window.setLocationRelativeTo(null);
-
-        int[] columns = {MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4};
-        int[] rows = {MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3, MARGIN_Y + 100 + 80 * 4};
+        int[] columns = { MARGIN_X, MARGIN_X + 90, MARGIN_X + 90 * 2, MARGIN_X + 90 * 3, MARGIN_X + 90 * 4,
+                MARGIN_X + 90 * 5 };
+        int[] rows = { MARGIN_Y, MARGIN_Y + 100, MARGIN_Y + 100 + 80, MARGIN_Y + 100 + 80 * 2, MARGIN_Y + 100 + 80 * 3,
+                MARGIN_Y + 100 + 80 * 4 };
 
         initInputScreen(columns, rows);
         initButtons(columns, rows);
@@ -125,7 +126,7 @@ public class CalculatorUI {
     }
 
     private void initCalculatorTypeSelector() {
-        comboCalculatorType = createComboBox(new String[]{"Standard", "Scientific"}, 20, 30, "Calculator type");
+        comboCalculatorType = createComboBox(new String[] { "Standard", "Scientific" }, 20, 30, "Calculator type");
         comboCalculatorType.addItemListener(event -> {
             if (event.getStateChange() != ItemEvent.SELECTED)
                 return;
@@ -139,7 +140,7 @@ public class CalculatorUI {
                     btnLog.setVisible(false);
                     break;
                 case "Scientific":
-                    window.setSize(WINDOW_WIDTH + 80, WINDOW_HEIGHT);
+                    window.setSize(WINDOW_WIDTH + 170, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
