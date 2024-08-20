@@ -91,7 +91,12 @@ public class CalculatorUI {
             case '*':
                 return firstNumber * secondNumber;
             case '/':
-                return firstNumber / secondNumber;
+                if (secondNumber == 0) {
+                    JOptionPane.showMessageDialog(window, "Cannot divide by zero", "Error", JOptionPane.ERROR_MESSAGE);
+                    return firstNumber;
+                } else {
+                    return firstNumber / secondNumber;
+                }
             case '%':
                 return firstNumber % secondNumber;
             case '^':
