@@ -57,7 +57,7 @@ public class CalculatorUI {
     private boolean go = true; // For calculate with Opt != (=)
     private boolean addToDisplay = true; // Connect numbers in display
     private double typedValue = 0;
-
+    private JButton btnSquare;
     private final Map<String, Theme> themesMap;
 
     public CalculatorUI() {
@@ -92,7 +92,12 @@ public class CalculatorUI {
             case '*':
                 return firstNumber * secondNumber;
             case '/':
-                return firstNumber / secondNumber;
+                if (secondNumber == 0) {
+                    JOptionPane.showMessageDialog(window, "Cannot divide by zero", "Error", JOptionPane.ERROR_MESSAGE);
+                    return firstNumber;
+                } else {
+                    return firstNumber / secondNumber;
+                }
             case '%':
                 return firstNumber % secondNumber;
             case '^':
@@ -139,7 +144,11 @@ public class CalculatorUI {
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
+
                     btnPi.setVisible(false);
+
+                    btnSquare.setVisible(false);
+
                     break;
                 case "Scientific":
                     window.setSize(WINDOW_WIDTH + 170, WINDOW_HEIGHT);
@@ -147,12 +156,28 @@ public class CalculatorUI {
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
                     btnPi.setVisible(true);
+                    btnSquare.setVisible(true);
+
                     break;
             }
         });
     }
 
     private void initButtons(int[] columns, int[] rows) {
+        btnSquare = createButton("x²", columns[4], rows[4]);
+btnSquare.addActionListener(event -> {
+    if (Pattern.matches(DOUBLE_OR_NUMBER_REGEX, inputScreen.getText())) {
+        double value = Double.parseDouble(inputScreen.getText());
+        value = Math.pow(value, 2);
+        inputScreen.setText(String.valueOf(value));
+        selectedOperator = '²';
+        go = false;
+        addToDisplay = false;
+    }
+});
+window.add(btnSquare);
+
+
         btnC = createButton("C", columns[0], rows[1]);
         btnC.addActionListener(event -> {
             inputScreen.setText("0");
