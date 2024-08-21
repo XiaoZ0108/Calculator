@@ -51,6 +51,7 @@ public class CalculatorUI {
     private JButton btnRoot;
     private JButton btnPower;
     private JButton btnLog;
+    private JButton btnPi;
 
     private char selectedOperator = ' ';
     private boolean go = true; // For calculate with Opt != (=)
@@ -143,14 +144,20 @@ public class CalculatorUI {
                     btnRoot.setVisible(false);
                     btnPower.setVisible(false);
                     btnLog.setVisible(false);
+
+                    btnPi.setVisible(false);
+
                     btnSquare.setVisible(false);
+
                     break;
                 case "Scientific":
                     window.setSize(WINDOW_WIDTH + 170, WINDOW_HEIGHT);
                     btnRoot.setVisible(true);
                     btnPower.setVisible(true);
                     btnLog.setVisible(true);
+                    btnPi.setVisible(true);
                     btnSquare.setVisible(true);
+
                     break;
             }
         });
@@ -176,7 +183,16 @@ window.add(btnSquare);
             inputScreen.setText("0");
             selectedOperator = ' ';
             typedValue = 0;
+            
         });
+
+        btnPi = createButton("π", columns[5], rows[3]);
+        btnPi.addActionListener(event -> {
+        inputScreen.setText(String.valueOf(Math.PI));
+        go = false;
+        addToDisplay = false;
+        });
+            window.add(btnPi);
 
         btnBack = createButton("<-", columns[1], rows[1]);
         btnBack.addActionListener(event -> {
